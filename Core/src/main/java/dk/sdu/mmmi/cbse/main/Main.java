@@ -107,7 +107,7 @@ public class Main extends Application {
 
     private void draw() {        
         for (Entity polygonEntity : polygons.keySet()) {
-            if(!world.getEntities().contains(polygonEntity)){   
+            if(!world.getEntities().contains(polygonEntity)){
                 Polygon removedPolygon = polygons.get(polygonEntity);               
                 polygons.remove(polygonEntity);                      
                 gameWindow.getChildren().remove(removedPolygon);

@@ -41,9 +41,6 @@ public class AsteroidProcessor implements IEntityProcessingService {
 
     }
 
-    /**
-     * Dependency Injection using OSGi Declarative Services
-     */
     public void setAsteroidSplitter(IAsteroidSplitter asteroidSplitter) {
         this.asteroidSplitter = asteroidSplitter;
     }
