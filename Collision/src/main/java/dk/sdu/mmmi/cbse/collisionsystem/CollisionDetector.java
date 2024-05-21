@@ -9,8 +9,15 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.enemysystem.Enemy;
 import dk.sdu.mmmi.cbse.playersystem.Player;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
+@Component
 public class CollisionDetector implements IPostEntityProcessingService {
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     private AsteroidSplitterImpl asteroidSplitter = new AsteroidSplitterImpl();
 
@@ -49,6 +56,12 @@ public class CollisionDetector implements IPostEntityProcessingService {
         } else {
             world.removeEntity(asteroid);
         }
+        updateScore(1);
+    }
+
+    private void updateScore(int points) {
+        String url = "http://localhost:8080/scores/add?points=" + points;
+        restTemplate.postForObject(url, null, Void.class);
     }
 
     public Boolean collides(Entity entity1, Entity entity2) {
@@ -57,5 +70,4 @@ public class CollisionDetector implements IPostEntityProcessingService {
         float distance = (float) Math.sqrt(dx * dx + dy * dy);
         return distance < (entity1.getRadius() + entity2.getRadius());
     }
-
 }
