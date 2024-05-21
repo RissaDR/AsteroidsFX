@@ -57,6 +57,4 @@ public class AsteroidProcessor implements IEntityProcessingService {
     public void removeAsteroidSplitter(IAsteroidSplitter asteroidSplitter) {
         this.asteroidSplitter = null;
     }
-
-
 }

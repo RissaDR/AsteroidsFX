@@ -22,7 +22,7 @@ public class EnemyControlSystem implements IEntityProcessingService {
             randomizeMovement(enemy, gameData);
             if (random.nextInt(100) < 10) {
                 getBulletSPIs().stream().findFirst().ifPresent(
-                        spi -> {world.addEntity(spi.createBullet(enemy, gameData));}
+                        spi -> {world.addEntity(spi.createBullet(enemy, gameData, enemy.getID()));}
                 );
             }
         }
